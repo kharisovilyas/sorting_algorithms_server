@@ -3,28 +3,39 @@ package ru.technolog.sorting_algorithms_server.entitys.data;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "sa_arrays")
+/*Класс для создания массива как Entity*/
 public class saArraysData implements IDataEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private ArrayList<Double> arrayList;
+    @Column(name = "array_id" , unique = true)
+    private Long arrayId;
 
-    public saArraysData(Long id, String nameOfArray, ArrayList<Double> arrayList) {
-        this.id = id;
-        this.arrayList = arrayList;
-    }
-    public ArrayList<Double> getArrayList() {
-        return arrayList;
+    @Column(name = "array_data")
+    private List<Double> arrayData = new ArrayList<>();
+
+    public Long getArrayId() {
+        return arrayId;
     }
 
-    public void setArrayList(ArrayList<Double> arrayList) {
-        this.arrayList = arrayList;
+    public void setArrayId(Long arrayId) {
+        this.arrayId = arrayId;
     }
 
+    public List<Double> getArrayData() {
+        return arrayData;
+    }
+
+    public void setArrayData(List<Double> arrayData) {
+        this.arrayData = arrayData;
+    }
+
+    // методы пустые, интерфейс реализован для наследования
+    @Override
     public Long getId() {
-        return id;
+        return null;
     }
 
     @Override
