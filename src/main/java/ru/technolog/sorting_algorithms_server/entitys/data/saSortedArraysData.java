@@ -14,10 +14,10 @@ import java.util.List;
 @Table(name = "sa_sorted_arrays")
 public class saSortedArraysData implements IDataEntity{
     @Id
-    @Column(name = "array_id" , unique = true)
+    @Column(name = "sorted_array_id" , unique = true)
     private Long arrayId;
 
-    @Column(name = "array_data")
+    @Column(name = "sorted_array")
     private List<Double> arrayData = new ArrayList<>();
     @Column(name = "status_of_sorted")
     private boolean statusOfSorted;

@@ -13,7 +13,7 @@ public class saArraysData implements IDataEntity {
     @Column(name = "array_id" , unique = true)
     private Long arrayId;
 
-    @Column(name = "array_data")
+    @Column(name = "array")
     private List<Double> arrayData = new ArrayList<>();
     @Column(name = "status_of_load")
     private boolean statusOfLoad ;
