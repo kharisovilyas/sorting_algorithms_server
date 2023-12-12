@@ -12,7 +12,7 @@ import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 /*Создание класса для добавления сущностей в базу данных*/
 
 @Service
-public class RestSortController {
+public class RestLoadArrayController {
     @Autowired
     private ArrayDataRepository arrayDataRepository;
 
@@ -21,8 +21,9 @@ public class RestSortController {
         saArraysData arraysData = new saArraysData();
         arraysData.setArrayData(arraysDTO.getArray_data());
         arraysData.setArrayId(arraysDTO.getArray_id());
+        arraysData.setStatusOfLoad(arraysDTO.isStatusOfLoad());
         arrayDataRepository.save(arraysData);
 
-        return ResponseEntity.ok(new ApiResponse("Поставьте автомат жпжпжпжпжжпжпжп"));
+        return ResponseEntity.ok(new ApiResponse("Postavte avtomat please"));
     }
 }

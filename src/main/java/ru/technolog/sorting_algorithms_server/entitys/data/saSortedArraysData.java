@@ -1,30 +1,26 @@
 package ru.technolog.sorting_algorithms_server.entitys.data;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+/*Класс описывающий сущности уже отсортированного массива*/
 @Entity
-@Table(name = "sa_arrays")
-/*Класс для создания массива как Entity*/
-public class saArraysData implements IDataEntity {
+@Table(name = "sa_sorted_arrays")
+public class saSortedArraysData implements IDataEntity{
     @Id
     @Column(name = "array_id" , unique = true)
     private Long arrayId;
 
     @Column(name = "array_data")
     private List<Double> arrayData = new ArrayList<>();
-    @Column(name = "status_of_load")
-    private boolean statusOfLoad ;
-
-    public boolean isStatusOfLoad() {
-        return statusOfLoad;
-    }
-
-    public void setStatusOfLoad(boolean statusOfLoad) {
-        this.statusOfLoad = statusOfLoad;
-    }
+    @Column(name = "status_of_sorted")
+    private boolean statusOfSorted;
 
     public Long getArrayId() {
         return arrayId;
@@ -42,7 +38,14 @@ public class saArraysData implements IDataEntity {
         this.arrayData = arrayData;
     }
 
-    // методы пустые, интерфейс реализован для наследования
+    public boolean isStatusOfSorted() {
+        return statusOfSorted;
+    }
+
+    public void setStatusOfSorted(boolean statusOfSorted) {
+        this.statusOfSorted = statusOfSorted;
+    }
+
     @Override
     public Long getId() {
         return null;
