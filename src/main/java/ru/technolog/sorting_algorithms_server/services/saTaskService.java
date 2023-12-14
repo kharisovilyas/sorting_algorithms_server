@@ -3,21 +3,19 @@ package ru.technolog.sorting_algorithms_server.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import ru.technolog.sorting_algorithms_server.entitys.data.saTaskData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoTask;
-import ru.technolog.sorting_algorithms_server.repository.ArrayDataRepository;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
-import ru.technolog.sorting_algorithms_server.repository.TaskDataRepository;
-import ru.technolog.sorting_algorithms_server.response.ApiResponse;
+import ru.technolog.sorting_algorithms_server.repository.saArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saTaskDataRepository;
 
 @Service
 public class saTaskService {
     @Autowired
-    private TaskDataRepository taskDataRepository;
+    private saTaskDataRepository taskDataRepository;
     @Autowired
-    private ArrayDataRepository arrayDataRepository;
+    private saArrayDataRepository arrayDataRepository;
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
+    private saSortedArrayDataRepository sortedArrayDataRepository;
 
 
     public ResponseEntity<dtoTask> fetchTask(Long taskId){

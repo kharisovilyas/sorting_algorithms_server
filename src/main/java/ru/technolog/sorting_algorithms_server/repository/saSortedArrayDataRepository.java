@@ -5,6 +5,5 @@ import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 
 import java.util.Optional;
 
-
-public interface SortedArrayDataRepository extends CrudRepository<saSortedArraysData,Long> {
+public interface saSortedArrayDataRepository extends CrudRepository<saSortedArraysData,Long> {
 }

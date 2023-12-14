@@ -5,13 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.technolog.sorting_algorithms_server.entitys.data.saArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoArrays;
-import ru.technolog.sorting_algorithms_server.repository.ArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 /*Создание cервиса для добавления сущностей в базу данных*/
 @Service
 public class saArrayService {
     @Autowired
-    private ArrayDataRepository arrayDataRepository;
+    private saArrayDataRepository arrayDataRepository;
 
 
     public ResponseEntity<ApiResponse> addArray(dtoArrays arraysDTO){

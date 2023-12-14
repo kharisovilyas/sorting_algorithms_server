@@ -5,13 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoSortedArrays;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
 @Service
 public class saSortedService {
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
+    private saSortedArrayDataRepository sortedArrayDataRepository;
 
 
     public ResponseEntity<ApiResponse> addArray(dtoSortedArrays sortedArraysDTO){
