@@ -3,10 +3,10 @@ package ru.technolog.sorting_algorithms_server.entitys.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class dtoSortedArrays {
+public class dtoSortedArray {
     private Long array_id;
     private List<Double> array_data = new ArrayList<>();
-    private boolean statusOfSorted ;
+    private boolean statusOfSorted;
 
     public Long getArray_id() {
         return array_id;

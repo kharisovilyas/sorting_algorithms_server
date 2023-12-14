@@ -10,13 +10,13 @@ import java.util.List;
 /*Класс для создания массива как Entity*/
 public class saArraysData implements IDataEntity {
     @Id
-    @Column(name = "array_id" , unique = true)
+    @Column(name = "array_id", unique = true)
     private Long arrayId;
 
     @Column(name = "array")
     private List<Double> arrayData = new ArrayList<>();
     @Column(name = "status_of_load")
-    private boolean statusOfLoad ;
+    private boolean statusOfLoad;
 
     public boolean isStatusOfLoad() {
         return statusOfLoad;
