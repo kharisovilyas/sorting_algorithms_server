@@ -7,5 +7,4 @@ import java.util.Optional;
 
 
 public interface SortedArrayDataRepository extends CrudRepository<saSortedArraysData,Long> {
-    Optional<saSortedArraysData> findById(Long id);
 }

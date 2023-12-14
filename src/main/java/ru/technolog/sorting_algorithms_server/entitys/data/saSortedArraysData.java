@@ -12,9 +12,9 @@ import java.util.List;
 /*Класс описывающий сущности уже отсортированного массива*/
 @Entity
 @Table(name = "sa_sorted_arrays")
-public class saSortedArraysData implements IDataEntity{
+public class saSortedArraysData implements IDataEntity {
     @Id
-    @Column(name = "array_id" , unique = true)
+    @Column(name = "array_id", unique = true)
     private Long arrayId;
 
     @Column(name = "array_data")

@@ -6,10 +6,11 @@ import java.util.List;
 /**
  * data transfer object для нашей сущности
  */
-public class dtoArrays implements IDTOEntity {
+public class dtoArray implements IDTOEntity {
     private Long array_id;
     private List<Double> array_data = new ArrayList<>();
-    private boolean statusOfLoad ;
+    private boolean statusOfLoad;
+
     public boolean isStatusOfLoad() {
         return statusOfLoad;
     }
@@ -18,7 +19,11 @@ public class dtoArrays implements IDTOEntity {
         this.statusOfLoad = statusOfLoad;
     }
 
-    public dtoArrays(Long array_id, List<Double> array_data) {
+    public dtoArray() {
+
+    }
+
+    public dtoArray(Long array_id, List<Double> array_data) {
         this.array_id = array_id;
         this.array_data = array_data;
     }
