@@ -8,6 +8,5 @@ import java.util.Optional;
 
 // для работы с изменением данных в БД
 @Repository
-public interface ArrayDataRepository extends CrudRepository<saArraysData,Long> {
-    Optional<saArraysData> findById(Long id);
+public interface saArrayDataRepository extends CrudRepository<saArraysData,Long> {
 }
