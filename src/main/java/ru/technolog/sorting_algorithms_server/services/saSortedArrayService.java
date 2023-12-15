@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoSortedArray;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
 import java.util.List;
@@ -17,9 +17,7 @@ import java.util.stream.StreamSupport;
 public class saSortedArrayService {
     // Автоматическое внедрение зависимости репозитория для работы с отсортированными массивами
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
-
-
+    private saSortedArrayDataRepository sortedArrayDataRepository;
     // Метод для удаления отсортированного массива по его идентификатору
     public ResponseEntity<ApiResponse> deleteArray(Long sortedArrayId) {
         // Пытаемся найти отсортированный массив по его идентификатору
@@ -50,9 +48,11 @@ public class saSortedArrayService {
     public dtoSortedArray mapToSortedArraysDTO(saSortedArraysData saSortedArraysData) {
         dtoSortedArray sortedArraysDTO = new dtoSortedArray();
         sortedArraysDTO.setArray_data(saSortedArraysData.getArrayData());
-        sortedArraysDTO.setArray_id(saSortedArraysData.getId());
+        sortedArraysDTO.setSortedArrayId(saSortedArraysData.getId());
         sortedArraysDTO.setStatusOfSorted(saSortedArraysData.isStatusOfSorted());
-
+        sortedArraysDTO.setSortedArrayName(saSortedArraysData.getSortedArrayName());
+        sortedArraysDTO.setDateOfSorted(saSortedArraysData.getDateOfSorted());
+        sortedArraysDTO.setTimeOfImpl(saSortedArraysData.getTimeOfImpl());
         return sortedArraysDTO;
     }
 }

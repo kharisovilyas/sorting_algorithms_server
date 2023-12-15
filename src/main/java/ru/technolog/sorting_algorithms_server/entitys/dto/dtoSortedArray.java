@@ -1,19 +1,49 @@
 package ru.technolog.sorting_algorithms_server.entitys.dto;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class dtoSortedArray {
-    private Long array_id;
+    private Long sortedArrayId;
+    private String sortedArrayName;
+    private LocalDateTime dateOfSorted;
+    private Duration timeOfImpl;
+
+    public LocalDateTime getDateOfSorted() {
+        return dateOfSorted;
+    }
+
+    public void setDateOfSorted(LocalDateTime dateOfSorted) {
+        this.dateOfSorted = dateOfSorted;
+    }
+
+    public Duration getTimeOfImpl() {
+        return timeOfImpl;
+    }
+
+    public void setTimeOfImpl(Duration timeOfImpl) {
+        this.timeOfImpl = timeOfImpl;
+    }
+
+    public String getSortedArrayName() {
+        return sortedArrayName;
+    }
+
+    public void setSortedArrayName(String sortedArrayName) {
+        this.sortedArrayName = sortedArrayName;
+    }
+
     private List<Double> array_data = new ArrayList<>();
     private boolean statusOfSorted;
 
-    public Long getArray_id() {
-        return array_id;
+    public Long getSortedArrayId() {
+        return sortedArrayId;
     }
 
-    public void setArray_id(Long array_id) {
-        this.array_id = array_id;
+    public void setSortedArrayId(Long sortedArrayId) {
+        this.sortedArrayId = sortedArrayId;
     }
 
     public List<Double> getArray_data() {
