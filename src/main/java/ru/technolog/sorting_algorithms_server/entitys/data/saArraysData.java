@@ -11,7 +11,8 @@ import java.util.List;
 /*Класс для создания массива как Entity*/
 public class saArraysData implements IDataEntity {
     @Id
-    @Column(name = "array_id", unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "array_id")
     private Long arrayId;
 
     @Column(name = "array_name")

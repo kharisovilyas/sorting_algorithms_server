@@ -29,11 +29,9 @@ public class saLoadArrayService {
         // Создаем объект saArraysData и устанавливаем его поля на основе данных из DTO
         saArraysData arraysData = new saArraysData();
         arraysData.setArrayData(arrayDTO.getArrayData());
-        arraysData.setArrayId(arrayDTO.getArrayId());
-        arraysData.setStatusOfLoad(arrayDTO.isStatusOfLoad());
-        arraysData.setArrayName(arraysData.getArrayName());
+        arraysData.setArrayName(arrayDTO.getArrayName());
         arraysData.setDateOfLoad(LocalDateTime.now());
-
+        arraysData.setStatusOfLoad(true);
 
         startSortedAndSaveArray(arrayDTO);
 
@@ -46,11 +44,12 @@ public class saLoadArrayService {
 
 
     //метод сортирует элементы и добавляет их в репозиторий
-    private void startSortedAndSaveArray(dtoArray array) {
+    private void startSortedAndSaveArray(dtoArray arrayDTO) {
         saSortedArraysData saSortedArraysData = new saSortedArraysData();
         TreeSort<Double> treeSort = new TreeSort<>();
         LocalDateTime startSorting = LocalDateTime.now();
-        saSortedArraysData.setArrayData(treeSort.sort(array.getArrayData()));
+        saSortedArraysData.setSortedArrayName(arrayDTO.getArrayName());
+        saSortedArraysData.setArrayData(treeSort.sort(arrayDTO.getArrayData()));
         LocalDateTime endSorting = LocalDateTime.now();
         Duration sortingDuration = Duration.between(startSorting, endSorting);
         saSortedArraysData.setDateOfSorted(sortingDuration);

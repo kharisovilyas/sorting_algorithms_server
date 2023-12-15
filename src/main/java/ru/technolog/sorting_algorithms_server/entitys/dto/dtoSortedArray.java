@@ -1,12 +1,11 @@
 package ru.technolog.sorting_algorithms_server.entitys.dto;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class dtoSortedArray {
-    private Long array_id;
+    private Long sortedArrayId;
     private String sortedArrayName;
     private Duration dateOfSorted;
 
@@ -29,12 +28,12 @@ public class dtoSortedArray {
     private List<Double> array_data = new ArrayList<>();
     private boolean statusOfSorted;
 
-    public Long getArray_id() {
-        return array_id;
+    public Long getSortedArrayId() {
+        return sortedArrayId;
     }
 
-    public void setArray_id(Long array_id) {
-        this.array_id = array_id;
+    public void setSortedArrayId(Long sortedArrayId) {
+        this.sortedArrayId = sortedArrayId;
     }
 
     public List<Double> getArray_data() {

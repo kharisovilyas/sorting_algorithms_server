@@ -1,12 +1,9 @@
 package ru.technolog.sorting_algorithms_server.entitys.data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.context.annotation.Primary;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +12,12 @@ import java.util.List;
 @Entity
 @Table(name = "sa_sorted_arrays")
 public class saSortedArraysData implements IDataEntity {
+
     @Id
-    @Column(name = "sorted_array_id" , unique = true)
-    private Long arrayId;
+    @Column(name = "sorted_array_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long sortedArrayId;
+
     @Column(name = "sorted_array_name")
     private String sortedArrayName;
 
@@ -38,12 +38,12 @@ public class saSortedArraysData implements IDataEntity {
         this.dateOfSorted = dateOfSorted;
     }
 
-    public Long getArrayId() {
-        return arrayId;
+    public Long getSortedArrayId() {
+        return sortedArrayId;
     }
 
-    public void setArrayId(Long arrayId) {
-        this.arrayId = arrayId;
+    public void setSortedArrayId(Long sortedArrayId) {
+        this.sortedArrayId = sortedArrayId;
     }
 
     public List<Double> getArrayData() {
