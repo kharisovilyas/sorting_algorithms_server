@@ -1,15 +1,17 @@
 package ru.technolog.sorting_algorithms_server.services;
-
+import java.time.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import ru.technolog.sorting_algorithms_server.calcs.sorting.TreeSort;
 import ru.technolog.sorting_algorithms_server.entitys.data.saArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoArray;
-import ru.technolog.sorting_algorithms_server.repository.ArrayDataRepository;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -18,17 +20,20 @@ import java.util.stream.StreamSupport;
 public class saLoadArrayService {
     // Автоматическое внедрение зависимости репозитория для работы с данными массивов
     @Autowired
-    private ArrayDataRepository arrayDataRepository;
+    private saArrayDataRepository arrayDataRepository;
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
+    private saSortedArrayDataRepository sortedArrayDataRepository;
 
     // Метод для добавления массива в базу данных
     public ResponseEntity<ApiResponse> addArray(dtoArray arrayDTO) {
         // Создаем объект saArraysData и устанавливаем его поля на основе данных из DTO
         saArraysData arraysData = new saArraysData();
-        arraysData.setArrayData(arrayDTO.getArray_data());
-        arraysData.setArrayId(arrayDTO.getArray_id());
+        arraysData.setArrayData(arrayDTO.getArrayData());
+        arraysData.setArrayId(arrayDTO.getArrayId());
         arraysData.setStatusOfLoad(arrayDTO.isStatusOfLoad());
+        arraysData.setArrayName(arraysData.getArrayName());
+        arraysData.setDateOfLoad(LocalDateTime.now());
+
 
         startSortedAndSaveArray(arrayDTO);
 
@@ -39,9 +44,17 @@ public class saLoadArrayService {
         return ResponseEntity.ok(new ApiResponse("Поставьте автомат, пожалуйста"));
     }
 
+
+    //метод сортирует элементы и добавляет их в репозиторий
     private void startSortedAndSaveArray(dtoArray array) {
         saSortedArraysData saSortedArraysData = new saSortedArraysData();
-
+        TreeSort<Double> treeSort = new TreeSort<>();
+        LocalDateTime startSorting = LocalDateTime.now();
+        saSortedArraysData.setArrayData(treeSort.sort(array.getArrayData()));
+        LocalDateTime endSorting = LocalDateTime.now();
+        Duration sortingDuration = Duration.between(startSorting, endSorting);
+        saSortedArraysData.setDateOfSorted(sortingDuration);
+        sortedArrayDataRepository.save(saSortedArraysData);
     }
 
     // Метод для удаления массива по его идентификатору
@@ -73,11 +86,36 @@ public class saLoadArrayService {
     // Метод для преобразования объекта saArraysData в объект dtoArray
     public dtoArray mapToArraysDTO(saArraysData saArraysData) {
         dtoArray dtoArray = new dtoArray();
-        dtoArray.setArray_data(saArraysData.getArrayData());
-        dtoArray.setArray_id(saArraysData.getArrayId());
+        dtoArray.setArrayData(saArraysData.getArrayData());
+        dtoArray.setArrayId(saArraysData.getArrayId());
         dtoArray.setStatusOfLoad(saArraysData.isStatusOfLoad());
+        dtoArray.setArrayName(saArraysData.getArrayName());
 
         return dtoArray;
+    }
+
+    public ResponseEntity<ApiResponse> updateArray(Long arrayId ,dtoArray arrayDTO ){
+        Optional<saArraysData> saArraysDataOptional = arrayDataRepository.findById(arrayId);
+        if (saArraysDataOptional.isPresent()) {
+            saArraysData arraysData = saArraysDataOptional.get();
+            arraysData.setArrayData(arrayDTO.getArrayData());
+            arraysData.setArrayId(arrayDTO.getArrayId());
+            arraysData.setStatusOfLoad(arrayDTO.isStatusOfLoad());
+            arraysData.setArrayName(arraysData.getArrayName());
+            arraysData.setDateOfLoad(LocalDateTime.now());
+
+
+            startSortedAndSaveArray(arrayDTO);
+
+            // Сохраняем массив в репозитории
+            arrayDataRepository.save(arraysData);
+
+            // Возвращаем успешный ответ с сообщением
+            return ResponseEntity.ok(new ApiResponse("Данные успешно обновлены"));
+        } else {
+            // Если массив не найден, возвращаем ошибку 404 с соответствующим сообщением
+            return ResponseEntity.status(404).body(new ApiResponse("По этому индексу данных нет"));
+        }
     }
 }
 

@@ -1,5 +1,7 @@
 package ru.technolog.sorting_algorithms_server.entitys.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +9,19 @@ import java.util.List;
  * data transfer object для нашей сущности
  */
 public class dtoArray implements IDTOEntity {
-    private Long array_id;
-    private List<Double> array_data = new ArrayList<>();
+    private String arrayName;
+    private Long arrayId;
+    private LocalDateTime dateOfLoad;
+
+    public LocalDateTime getDateOfLoad() {
+        return dateOfLoad;
+    }
+
+    public void setDateOfLoad(LocalDateTime dateOfLoad) {
+        this.dateOfLoad = dateOfLoad;
+    }
+
+    private List<Double> arrayData = new ArrayList<>();
     private boolean statusOfLoad;
 
     public boolean isStatusOfLoad() {
@@ -23,24 +36,28 @@ public class dtoArray implements IDTOEntity {
 
     }
 
-    public dtoArray(Long array_id, List<Double> array_data) {
-        this.array_id = array_id;
-        this.array_data = array_data;
+
+    public String getArrayName() {
+        return arrayName;
     }
 
-    public Long getArray_id() {
-        return array_id;
+    public void setArrayName(String arrayName) {
+        this.arrayName = arrayName;
     }
 
-    public void setArray_id(Long array_id) {
-        this.array_id = array_id;
+    public Long getArrayId() {
+        return arrayId;
     }
 
-    public List<Double> getArray_data() {
-        return array_data;
+    public void setArrayId(Long arrayId) {
+        this.arrayId = arrayId;
     }
 
-    public void setArray_data(List<Double> array_data) {
-        this.array_data = array_data;
+    public List<Double> getArrayData() {
+        return arrayData;
+    }
+
+    public void setArrayData(List<Double> arrayData) {
+        this.arrayData = arrayData;
     }
 }

@@ -31,6 +31,11 @@ public class RestLoadArrayController {
         return saLoadArrayService.deleteArray(sortedArrayId);
     }
 
+    @PostMapping("/update")
+    private ResponseEntity<ApiResponse> updateArrayByIndex(@RequestParam Long sortedArrayId,@RequestBody dtoArray array) {
+        return saLoadArrayService.updateArray(sortedArrayId,array);
+    }
+
     // Обработка HTTP GET запроса для получения всех данных о массивах
     @GetMapping("/get/all")
     private ResponseEntity<List<dtoArray>> getAllArraysData() {

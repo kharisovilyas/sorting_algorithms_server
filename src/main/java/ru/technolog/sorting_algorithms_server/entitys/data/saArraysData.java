@@ -2,6 +2,7 @@ package ru.technolog.sorting_algorithms_server.entitys.data;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +14,32 @@ public class saArraysData implements IDataEntity {
     @Column(name = "array_id", unique = true)
     private Long arrayId;
 
+    @Column(name = "array_name")
+    private String arrayName;
+
     @Column(name = "array")
     private List<Double> arrayData = new ArrayList<>();
     @Column(name = "status_of_load")
     private boolean statusOfLoad;
 
+    @Column(name = "date_of_load")
+    private LocalDateTime dateOfLoad;
+
+    public LocalDateTime getDateOfLoad() {
+        return dateOfLoad;
+    }
+
+    public void setDateOfLoad(LocalDateTime dateOfLoad) {
+        this.dateOfLoad = dateOfLoad;
+    }
+
+    public String getArrayName() {
+        return arrayName;
+    }
+
+    public void setArrayName(String arrayName) {
+        this.arrayName = arrayName;
+    }
     public boolean isStatusOfLoad() {
         return statusOfLoad;
     }

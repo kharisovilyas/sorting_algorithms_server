@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoSortedArray;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
 import java.util.List;
@@ -17,19 +17,7 @@ import java.util.stream.StreamSupport;
 public class saSortedArrayService {
     // Автоматическое внедрение зависимости репозитория для работы с отсортированными массивами
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
-
-    // Метод для добавления отсортированного массива в базу данных
-    public ResponseEntity<ApiResponse> addArray(dtoSortedArray sortedArraysDTO) {
-        // Создаем объект saSortedArraysData и устанавливаем его поля на основе данных из DTO
-        saSortedArraysData sortedArraysData = new saSortedArraysData();
-        sortedArraysData.setArrayData(sortedArraysDTO.getArray_data());
-        sortedArraysData.setArrayId(sortedArraysDTO.getArray_id());
-        sortedArraysData.setStatusOfSorted(sortedArraysDTO.isStatusOfSorted());
-
-        // Возвращаем успешный ответ с сообщением
-        return ResponseEntity.ok(new ApiResponse("Поставьте автомат, пожалуйста"));
-    }
+    private saSortedArrayDataRepository sortedArrayDataRepository;
 
     // Метод для удаления отсортированного массива по его идентификатору
     public ResponseEntity<ApiResponse> deleteArray(Long sortedArrayId) {
@@ -63,6 +51,8 @@ public class saSortedArrayService {
         sortedArraysDTO.setArray_data(saSortedArraysData.getArrayData());
         sortedArraysDTO.setArray_id(saSortedArraysData.getId());
         sortedArraysDTO.setStatusOfSorted(saSortedArraysData.isStatusOfSorted());
+        sortedArraysDTO.setSortedArrayName(saSortedArraysData.getSortedArrayName());
+        sortedArraysDTO.setDateOfSorted(saSortedArraysData.getDateOfSorted());
 
         return sortedArraysDTO;
     }
