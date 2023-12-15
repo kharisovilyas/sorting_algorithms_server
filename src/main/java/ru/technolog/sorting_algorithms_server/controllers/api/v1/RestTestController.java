@@ -52,4 +52,42 @@ public class RestTestController {
         return randomDoubleList;
     }
 
+
+    @GetMapping("/add1000Arrays")
+    public ResponseEntity<ApiResponse> add1000Arrays() {
+        try {
+            for (int i = 1; i <= 1000; i++) {
+                dtoArray arrayDTO = new dtoArray();
+                arrayDTO.setArrayName("array - " + i);
+                arrayDTO.setArrayData(generateRandomDoubleList(9));
+                arrayDTO.setStatusOfLoad(true);
+                arrayDTO.setDateOfLoad(LocalDateTime.now());
+
+                saLoadArrayService.addArray(arrayDTO);
+            }
+            return ResponseEntity.ok(new ApiResponse("Тест успешно выполнен: добавлено 1000 массивов в базу данных"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponse("Ошибка при выполнении теста: " + e.getMessage()));
+        }
+    }
+
+
+    @GetMapping("/add10000Arrays")
+    public ResponseEntity<ApiResponse> add10000Arrays() {
+        try {
+            for (int i = 1; i <= 10000; i++) {
+                dtoArray arrayDTO = new dtoArray();
+                arrayDTO.setArrayName("array - " + i);
+                arrayDTO.setArrayData(generateRandomDoubleList(11));
+                arrayDTO.setStatusOfLoad(true);
+                arrayDTO.setDateOfLoad(LocalDateTime.now());
+
+                saLoadArrayService.addArray(arrayDTO);
+            }
+            return ResponseEntity.ok(new ApiResponse("Тест успешно выполнен: добавлено 10000 массивов в базу данных"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new ApiResponse("Ошибка при выполнении теста: " + e.getMessage()));
+        }
+    }
+
 }
