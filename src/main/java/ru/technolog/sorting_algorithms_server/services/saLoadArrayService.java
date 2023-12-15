@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.technolog.sorting_algorithms_server.entitys.data.saArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoArray;
-import ru.technolog.sorting_algorithms_server.repository.ArrayDataRepository;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
 import java.util.List;
@@ -18,9 +18,9 @@ import java.util.stream.StreamSupport;
 public class saLoadArrayService {
     // Автоматическое внедрение зависимости репозитория для работы с данными массивов
     @Autowired
-    private ArrayDataRepository arrayDataRepository;
+    private saArrayDataRepository arrayDataRepository;
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
+    private saSortedArrayDataRepository sortedArrayDataRepository;
 
     // Метод для добавления массива в базу данных
     public ResponseEntity<ApiResponse> addArray(dtoArray arrayDTO) {

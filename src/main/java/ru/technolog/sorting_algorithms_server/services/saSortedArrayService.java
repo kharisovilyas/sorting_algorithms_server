@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoSortedArray;
-import ru.technolog.sorting_algorithms_server.repository.SortedArrayDataRepository;
+import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.stream.StreamSupport;
 public class saSortedArrayService {
     // Автоматическое внедрение зависимости репозитория для работы с отсортированными массивами
     @Autowired
-    private SortedArrayDataRepository sortedArrayDataRepository;
+    private saSortedArrayDataRepository sortedArrayDataRepository;
 
     // Метод для добавления отсортированного массива в базу данных
     public ResponseEntity<ApiResponse> addArray(dtoSortedArray sortedArraysDTO) {
