@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.springframework.context.annotation.Primary;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,14 +29,25 @@ public class saSortedArraysData implements IDataEntity {
     private boolean statusOfSorted;
 
     @Column(name = "date_of_sorted")
-    private Duration dateOfSorted;
+    private LocalDateTime dateOfSorted;
 
-    public Duration getDateOfSorted() {
+    @Column(name = "time_of_impl")
+    private Duration timeOfImpl;
+
+    public LocalDateTime getDateOfSorted() {
         return dateOfSorted;
     }
 
-    public void setDateOfSorted(Duration dateOfSorted) {
+    public void setDateOfSorted(LocalDateTime dateOfSorted) {
         this.dateOfSorted = dateOfSorted;
+    }
+
+    public Duration getTimeOfImpl() {
+        return timeOfImpl;
+    }
+
+    public void setTimeOfImpl(Duration timeOfImpl) {
+        this.timeOfImpl = timeOfImpl;
     }
 
     public Long getSortedArrayId() {

@@ -32,7 +32,7 @@ public class saLoadArrayService {
         arraysData.setArrayName(arrayDTO.getArrayName());
         arraysData.setDateOfLoad(LocalDateTime.now());
         arraysData.setStatusOfLoad(true);
-
+        System.out.println(LocalDateTime.now());
         startSortedAndSaveArray(arrayDTO);
 
         // Сохраняем массив в репозитории
@@ -50,9 +50,10 @@ public class saLoadArrayService {
         LocalDateTime startSorting = LocalDateTime.now();
         saSortedArraysData.setSortedArrayName(arrayDTO.getArrayName());
         saSortedArraysData.setArrayData(treeSort.sort(arrayDTO.getArrayData()));
+        saSortedArraysData.setDateOfSorted(LocalDateTime.now());
         LocalDateTime endSorting = LocalDateTime.now();
         Duration sortingDuration = Duration.between(startSorting, endSorting);
-        saSortedArraysData.setDateOfSorted(sortingDuration);
+        saSortedArraysData.setTimeOfImpl(sortingDuration);
         sortedArrayDataRepository.save(saSortedArraysData);
     }
 
@@ -89,7 +90,7 @@ public class saLoadArrayService {
         dtoArray.setArrayId(saArraysData.getArrayId());
         dtoArray.setStatusOfLoad(saArraysData.isStatusOfLoad());
         dtoArray.setArrayName(saArraysData.getArrayName());
-
+        dtoArray.setDateOfLoad(saArraysData.getDateOfLoad());
         return dtoArray;
     }
 

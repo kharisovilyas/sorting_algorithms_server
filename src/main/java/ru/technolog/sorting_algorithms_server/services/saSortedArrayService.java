@@ -54,7 +54,7 @@ public class saSortedArrayService {
         sortedArraysDTO.setStatusOfSorted(saSortedArraysData.isStatusOfSorted());
         sortedArraysDTO.setSortedArrayName(saSortedArraysData.getSortedArrayName());
         sortedArraysDTO.setDateOfSorted(saSortedArraysData.getDateOfSorted());
-
+        sortedArraysDTO.setTimeOfImpl(saSortedArraysData.getTimeOfImpl());
         return sortedArraysDTO;
     }
 }
