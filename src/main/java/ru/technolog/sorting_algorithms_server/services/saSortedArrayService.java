@@ -19,17 +19,6 @@ public class saSortedArrayService {
     @Autowired
     private SortedArrayDataRepository sortedArrayDataRepository;
 
-    // Метод для добавления отсортированного массива в базу данных
-    public ResponseEntity<ApiResponse> addArray(dtoSortedArray sortedArraysDTO) {
-        // Создаем объект saSortedArraysData и устанавливаем его поля на основе данных из DTO
-        saSortedArraysData sortedArraysData = new saSortedArraysData();
-        sortedArraysData.setArrayData(sortedArraysDTO.getArray_data());
-        sortedArraysData.setArrayId(sortedArraysDTO.getArray_id());
-        sortedArraysData.setStatusOfSorted(sortedArraysDTO.isStatusOfSorted());
-
-        // Возвращаем успешный ответ с сообщением
-        return ResponseEntity.ok(new ApiResponse("Поставьте автомат, пожалуйста"));
-    }
 
     // Метод для удаления отсортированного массива по его идентификатору
     public ResponseEntity<ApiResponse> deleteArray(Long sortedArrayId) {
