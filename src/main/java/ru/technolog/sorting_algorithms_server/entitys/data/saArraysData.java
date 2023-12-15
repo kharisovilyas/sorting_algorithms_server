@@ -17,7 +17,7 @@ public class saArraysData implements IDataEntity {
     @Column(name = "array_name")
     private String arrayName;
 
-    @Column(name = "array")
+    @Column(name = "array_data")
     private List<Double> arrayData = new ArrayList<>();
     @Column(name = "status_of_load")
     private boolean statusOfLoad;
