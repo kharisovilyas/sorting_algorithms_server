@@ -3,17 +3,18 @@ package ru.technolog.sorting_algorithms_server.calcs.sorting;
 import java.util.List;
 import java.util.Map;
 
-public class TreeSort<T extends Comparable<T>> {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    // метод для сортировки
-    public List<T> sort(List<T> inputList) {
+public class TreeSort <T extends Comparable<T>>  {
+
+    public List<T> sort (List<T> inputList) {
         Tree<T> tree = new Tree<>();
         tree = tree.toCreateTreeFromList(inputList);
         return tree.toMakeInorder();
     }
-
-
-    public Map<Integer, Long> createDataAboutSorting(List<T> inputList) {
+    public Map<Integer,Long> createDataAboutSorting(List<T> inputList){
         Tree<T> tree = new Tree<>();
         tree = tree.toCreateTreeFromList(inputList);
         tree.toMakeInorder();
