@@ -21,8 +21,8 @@ public class RestLoadArrayController {
 
     // Обработка HTTP POST запроса для добавления массива
     @PostMapping("/add")
-    private ResponseEntity<ApiResponse> addArray(@RequestBody dtoArray array) {
-        return saLoadArrayService.addArray(array);
+    private ResponseEntity<ApiResponse> addArrayWithSorting(@RequestBody dtoArray array) {
+        return saLoadArrayService.addArrayWithSorting(array);
     }
 
     // Обработка HTTP POST запроса для удаления массива по индексу
@@ -32,8 +32,8 @@ public class RestLoadArrayController {
     }
 
     @PostMapping("/update")
-    private ResponseEntity<ApiResponse> updateArrayByIndex(@RequestParam Long sortedArrayId,@RequestBody dtoArray array) {
-        return saLoadArrayService.updateArray(sortedArrayId,array);
+    private ResponseEntity<ApiResponse> updateArrayWithSorted(@RequestParam Long sortedArrayId,@RequestBody dtoArray array) {
+        return saLoadArrayService.updateArrayWithSorted(sortedArrayId,array);
     }
 
     // Обработка HTTP GET запроса для получения всех данных о массивах

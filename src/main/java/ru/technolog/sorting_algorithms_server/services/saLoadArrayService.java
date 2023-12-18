@@ -25,21 +25,28 @@ public class saLoadArrayService {
     private saSortedArrayDataRepository sortedArrayDataRepository;
 
     // Метод для добавления массива в базу данных
-    public ResponseEntity<ApiResponse> addArray(dtoArray arrayDTO) {
+    public ResponseEntity<ApiResponse> addArrayWithSorting(dtoArray arrayDTO) {
         // Создаем объект saArraysData и устанавливаем его поля на основе данных из DTO
-        saArraysData arraysData = new saArraysData();
-        arraysData.setArrayData(arrayDTO.getArrayData());
-        arraysData.setArrayName(arrayDTO.getArrayName());
-        arraysData.setDateOfLoad(LocalDateTime.now());
-        arraysData.setStatusOfLoad(true);
-        System.out.println(LocalDateTime.now());
-        startSortedAndSaveArray(arrayDTO);
+        try {
+            saArraysData saArraysData = new saArraysData();
+            saArraysData.setArrayData(arrayDTO.getArrayData());
+            if(arrayDTO.getArrayData().isEmpty()){
+                return ResponseEntity.status(400).body(new ApiResponse("Данные успешно добавлены для сортировки"));
+            }
+            saArraysData.setArrayName(arrayDTO.getArrayName());
+            saArraysData.setDateOfLoad(LocalDateTime.now());
+            saArraysData.setStatusOfLoad(true);
+            saArraysData.setStatusOfSorted(true);
+            // Сохраняем массив в репозитории
+            arrayDataRepository.save(saArraysData);
+            startSortedAndSaveArray(arrayDTO);
 
-        // Сохраняем массив в репозитории
-        arrayDataRepository.save(arraysData);
+            // Возвращаем успешный ответ с сообщением
+            return ResponseEntity.ok(new ApiResponse("Данные успешно добавлены для сортировки"));
+        }catch (Exception exception){
+            return ResponseEntity.badRequest().body(new ApiResponse(exception.fillInStackTrace().getMessage()));
+        }
 
-        // Возвращаем успешный ответ с сообщением
-        return ResponseEntity.ok(new ApiResponse("Поставьте автомат, пожалуйста"));
     }
 
 
@@ -88,28 +95,29 @@ public class saLoadArrayService {
         dtoArray dtoArray = new dtoArray();
         dtoArray.setArrayData(saArraysData.getArrayData());
         dtoArray.setArrayId(saArraysData.getArrayId());
-        dtoArray.setStatusOfLoad(saArraysData.isStatusOfLoad());
         dtoArray.setArrayName(saArraysData.getArrayName());
         dtoArray.setDateOfLoad(saArraysData.getDateOfLoad());
+        Boolean statusOfSorted = saArraysData.isStatusOfSorted();
+        dtoArray.setStatusOfSorted(statusOfSorted != null && statusOfSorted);
+        Boolean statusOfLoaded = saArraysData.isStatusOfLoad();
+        dtoArray.setStatusOfLoad(statusOfLoaded != null && statusOfLoaded);
+
         return dtoArray;
     }
 
-    public ResponseEntity<ApiResponse> updateArray(Long arrayId ,dtoArray arrayDTO ){
+    public ResponseEntity<ApiResponse> updateArrayWithSorted(Long arrayId , dtoArray arrayDTO){
         Optional<saArraysData> saArraysDataOptional = arrayDataRepository.findById(arrayId);
         if (saArraysDataOptional.isPresent()) {
-            saArraysData arraysData = saArraysDataOptional.get();
-            arraysData.setArrayData(arrayDTO.getArrayData());
-            arraysData.setArrayId(arrayDTO.getArrayId());
-            arraysData.setStatusOfLoad(arrayDTO.isStatusOfLoad());
-            arraysData.setArrayName(arraysData.getArrayName());
-            arraysData.setDateOfLoad(LocalDateTime.now());
-
+            saArraysData saArraysData = saArraysDataOptional.get();
+            saArraysData.setArrayData(arrayDTO.getArrayData());
+            saArraysData.setArrayName(saArraysData.getArrayName());
+            saArraysData.setDateOfLoad(LocalDateTime.now());
+            saArraysData.setStatusOfLoad(true);
+            saArraysData.setStatusOfSorted(true);
+            // Сохраняем массив в репозитории
+            arrayDataRepository.save(saArraysData);
 
             startSortedAndSaveArray(arrayDTO);
-
-            // Сохраняем массив в репозитории
-            arrayDataRepository.save(arraysData);
-
             // Возвращаем успешный ответ с сообщением
             return ResponseEntity.ok(new ApiResponse("Данные успешно обновлены"));
         } else {
