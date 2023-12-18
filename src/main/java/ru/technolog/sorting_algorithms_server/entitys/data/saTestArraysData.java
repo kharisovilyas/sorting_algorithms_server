@@ -8,61 +8,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "sa_tests_arrays")
+@Table(name = "sa_test_arrays")
 public class saTestArraysData implements IDataEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "array_id")
-    private Long arrayId;
+    @Column(name = "test_array_id")
+    private Long testArrayId;
 
-    @Column(name = "array_name")
-    private String arrayName;
+    @Column(name = "test_array_name")
+    private String testArrayName;
 
-    @Column(name = "array_data")
-    private List<Double> arrayData = new ArrayList<>();
-    @Column(name = "status_of_load")
-    private boolean statusOfLoad;
+    @Column(name = "test_array_data")
+    private List<Double> testArrayData = new ArrayList<>();
+    @Column(name = "test_status_of_load")
+    private boolean testStatusOfLoad;
 
-    @Column(name = "date_of_load")
-    private LocalDateTime dateOfLoad;
+    @Column(name = "test_date_of_load")
+    private LocalDateTime testDateOfLoad;
 
-    public LocalDateTime getDateOfLoad() {
-        return dateOfLoad;
+    public LocalDateTime getTestDateOfLoad() {
+        return testDateOfLoad;
     }
 
-    public void setDateOfLoad(LocalDateTime dateOfLoad) {
-        this.dateOfLoad = dateOfLoad;
+    public void setTestDateOfLoad(LocalDateTime testDateOfLoad) {
+        this.testDateOfLoad = testDateOfLoad;
     }
 
-    public String getArrayName() {
-        return arrayName;
+    public String getTestArrayName() {
+        return testArrayName;
     }
 
-    public void setArrayName(String arrayName) {
-        this.arrayName = arrayName;
+    public void setTestArrayName(String testArrayName) {
+        this.testArrayName = testArrayName;
     }
-    public boolean isStatusOfLoad() {
-        return statusOfLoad;
+    public Boolean isTestStatusOfLoad() {
+        return testStatusOfLoad;
     }
 
-    public void setStatusOfLoad(boolean statusOfLoad) {
-        this.statusOfLoad = statusOfLoad;
+    public void setTestStatusOfLoad(Boolean testStatusOfLoad) {
+        this.testStatusOfLoad = testStatusOfLoad;
     }
 
     public Long getArrayId() {
-        return arrayId;
+        return testArrayId;
     }
 
     public void setArrayId(Long arrayId) {
-        this.arrayId = arrayId;
+        this.testArrayId = arrayId;
     }
 
-    public List<Double> getArrayData() {
-        return arrayData;
+    public List<Double> getTestArrayData() {
+        return testArrayData;
     }
 
-    public void setArrayData(List<Double> arrayData) {
-        this.arrayData = arrayData;
+    public void setTestArrayData(List<Double> testArrayData) {
+        this.testArrayData = testArrayData;
     }
 
     // методы пустые, интерфейс реализован для наследования
