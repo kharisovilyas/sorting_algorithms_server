@@ -12,7 +12,17 @@ public class dtoArray implements IDTOEntity {
     private String arrayName;
     private Long arrayId;
     private LocalDateTime dateOfLoad;
-    private boolean statusOfLoad;
+    private Boolean statusOfLoad;
+
+    public Boolean isStatusOfSorted() {
+        return statusOfSorted;
+    }
+
+    public void setStatusOfSorted(boolean statusOfSorted) {
+        this.statusOfSorted = statusOfSorted;
+    }
+
+    private Boolean statusOfSorted;
 
     public LocalDateTime getDateOfLoad() {
         return dateOfLoad;
@@ -25,11 +35,11 @@ public class dtoArray implements IDTOEntity {
     private List<Double> arrayData = new ArrayList<>();
 
 
-    public boolean isStatusOfLoad() {
+    public Boolean isStatusOfLoad() {
         return statusOfLoad;
     }
 
-    public void setStatusOfLoad(boolean statusOfLoad) {
+    public void setStatusOfLoad(Boolean statusOfLoad) {
         this.statusOfLoad = statusOfLoad;
     }
 

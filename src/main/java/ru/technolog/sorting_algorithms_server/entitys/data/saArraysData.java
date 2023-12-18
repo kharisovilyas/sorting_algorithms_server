@@ -20,11 +20,23 @@ public class saArraysData implements IDataEntity {
 
     @Column(name = "array_data")
     private List<Double> arrayData = new ArrayList<>();
+
     @Column(name = "status_of_load")
-    private boolean statusOfLoad;
+    private Boolean statusOfLoad;
+
+    @Column(name = "status_of_sorted")
+    private Boolean statusOfSorted;
 
     @Column(name = "date_of_load")
     private LocalDateTime dateOfLoad;
+
+    public Boolean isStatusOfSorted() {
+        return statusOfSorted;
+    }
+
+    public void setStatusOfSorted(Boolean statusOfSorted) {
+        this.statusOfSorted = statusOfSorted;
+    }
 
     public LocalDateTime getDateOfLoad() {
         return dateOfLoad;
@@ -41,11 +53,12 @@ public class saArraysData implements IDataEntity {
     public void setArrayName(String arrayName) {
         this.arrayName = arrayName;
     }
-    public boolean isStatusOfLoad() {
+
+    public Boolean isStatusOfLoad() {
         return statusOfLoad;
     }
 
-    public void setStatusOfLoad(boolean statusOfLoad) {
+    public void setStatusOfLoad(Boolean statusOfLoad) {
         this.statusOfLoad = statusOfLoad;
     }
 
