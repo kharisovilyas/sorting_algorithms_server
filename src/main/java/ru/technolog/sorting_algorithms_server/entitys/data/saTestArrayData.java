@@ -1,32 +1,29 @@
 package ru.technolog.sorting_algorithms_server.entitys.data;
 
+
 import jakarta.persistence.*;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "sa_test_sorted_arrays")
-public class saTestSortedArrayData implements IDataEntity {
-
+@Table(name = "sa_test_arrays")
+public class saTestArrayData implements IDataEntity {
     @Id
-    @Column(name = "test_sorted_array_id")
-    private Long testSortedArrayId;
+    @Column(name = "test_id")
+    private Long testId;
 
+    public Long getTestId() {
+        return testId;
+    }
 
-    @Column(name = "test_sorted_array")
+    public void setTestId(Long testId) {
+        this.testId = testId;
+    }
+
+    @Column(name = "test_array_data")
     private List<Double> testArrayData = new ArrayList<>();
 
-
-    public Long getTestSortedArrayId() {
-        return testSortedArrayId;
-    }
-
-    public void setTestSortedArrayId(Long testSortedArrayId) {
-        this.testSortedArrayId = testSortedArrayId;
-    }
 
     public List<Double> getTestArrayData() {
         return testArrayData;
@@ -35,6 +32,8 @@ public class saTestSortedArrayData implements IDataEntity {
     public void setTestArrayData(List<Double> testArrayData) {
         this.testArrayData = testArrayData;
     }
+
+    // методы пустые, интерфейс реализован для наследования
     @Override
     public Long getId() {
         return null;

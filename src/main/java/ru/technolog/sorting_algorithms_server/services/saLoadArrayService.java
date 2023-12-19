@@ -28,6 +28,7 @@ public class saLoadArrayService {
     public ResponseEntity<ApiResponse> addArrayWithSorting(dtoArray arrayDTO) {
         // Создаем объект saArraysData и устанавливаем его поля на основе данных из DTO
         try {
+
             saArraysData saArraysData = new saArraysData();
             saArraysData.setArrayData(arrayDTO.getArrayData());
             if(arrayDTO.getArrayData().isEmpty()){
