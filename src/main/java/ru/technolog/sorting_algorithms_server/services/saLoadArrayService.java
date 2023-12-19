@@ -50,6 +50,30 @@ public class saLoadArrayService {
 
     }
 
+    public ResponseEntity<ApiResponse> addArrayWithoutSorting(dtoArray arrayDTO) {
+        // Создаем объект saArraysData и устанавливаем его поля на основе данных из DTO
+        try {
+
+            saArraysData saArraysData = new saArraysData();
+            saArraysData.setArrayData(arrayDTO.getArrayData());
+            if(arrayDTO.getArrayData().isEmpty()){
+                return ResponseEntity.status(400).body(new ApiResponse("Данные успешно добавлены для сортировки"));
+            }
+            saArraysData.setArrayName(arrayDTO.getArrayName());
+            saArraysData.setDateOfLoad(LocalDateTime.now());
+            saArraysData.setStatusOfLoad(true);
+            saArraysData.setStatusOfSorted(false);
+            // Сохраняем массив в репозитории
+            arrayDataRepository.save(saArraysData);
+
+            // Возвращаем успешный ответ с сообщением
+            return ResponseEntity.ok(new ApiResponse("Данные успешно добавлены для сортировки"));
+        }catch (Exception exception){
+            return ResponseEntity.badRequest().body(new ApiResponse(exception.fillInStackTrace().getMessage()));
+        }
+
+    }
+
 
     //метод сортирует элементы и добавляет их в репозиторий
     private void startSortedAndSaveArray(dtoArray arrayDTO, Long saArrayId) {
