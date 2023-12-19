@@ -40,7 +40,7 @@ public class saLoadArrayService {
             saArraysData.setStatusOfSorted(true);
             // Сохраняем массив в репозитории
             arrayDataRepository.save(saArraysData);
-            startSortedAndSaveArray(arrayDTO);
+            startSortedAndSaveArray(arrayDTO, saArraysData.getArrayId());
 
             // Возвращаем успешный ответ с сообщением
             return ResponseEntity.ok(new ApiResponse("Данные успешно добавлены для сортировки"));
@@ -52,18 +52,22 @@ public class saLoadArrayService {
 
 
     //метод сортирует элементы и добавляет их в репозиторий
-    private void startSortedAndSaveArray(dtoArray arrayDTO) {
+    private void startSortedAndSaveArray(dtoArray arrayDTO, Long saArrayId) {
         saSortedArraysData saSortedArraysData = new saSortedArraysData();
         TreeSort<Double> treeSort = new TreeSort<>();
-        LocalDateTime startSorting = LocalDateTime.now();
+
+        saSortedArraysData.setSortedArrayId(saArrayId);
         saSortedArraysData.setSortedArrayName(arrayDTO.getArrayName());
-        saSortedArraysData.setArrayData(treeSort.sort(arrayDTO.getArrayData()));
+        LocalDateTime startSorting = LocalDateTime.now();
         saSortedArraysData.setDateOfSorted(LocalDateTime.now());
+        saSortedArraysData.setArrayData(treeSort.sort(arrayDTO.getArrayData()));
         LocalDateTime endSorting = LocalDateTime.now();
         Duration sortingDuration = Duration.between(startSorting, endSorting);
         saSortedArraysData.setTimeOfImpl(sortingDuration);
+        saSortedArraysData.setStatusOfSorted(true);
         sortedArrayDataRepository.save(saSortedArraysData);
     }
+
 
     // Метод для удаления массива по его идентификатору
     public ResponseEntity<ApiResponse> deleteArray(Long arrayId) {
@@ -117,8 +121,7 @@ public class saLoadArrayService {
             saArraysData.setStatusOfSorted(true);
             // Сохраняем массив в репозитории
             arrayDataRepository.save(saArraysData);
-
-            startSortedAndSaveArray(arrayDTO);
+            startSortedAndSaveArray(arrayDTO, saArraysData.getArrayId());
             // Возвращаем успешный ответ с сообщением
             return ResponseEntity.ok(new ApiResponse("Данные успешно обновлены"));
         } else {

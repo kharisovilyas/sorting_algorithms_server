@@ -10,6 +10,7 @@ public class dtoSortedArray implements IDTOEntity {
     private String sortedArrayName;
     private LocalDateTime dateOfSorted;
     private Duration timeOfImpl;
+    private boolean statusOfSorted;
 
     public LocalDateTime getDateOfSorted() {
         return dateOfSorted;
@@ -36,7 +37,6 @@ public class dtoSortedArray implements IDTOEntity {
     }
 
     private List<Double> array_data = new ArrayList<>();
-    private boolean statusOfSorted;
 
     public Long getSortedArrayId() {
         return sortedArrayId;
@@ -50,8 +50,8 @@ public class dtoSortedArray implements IDTOEntity {
         return array_data;
     }
 
-    public void setArray_data(List<Double> array_data) {
-        this.array_data = array_data;
+    public void setArrayData(List<Double> arrayData) {
+        this.array_data = arrayData;
     }
 
     public boolean isStatusOfSorted() {

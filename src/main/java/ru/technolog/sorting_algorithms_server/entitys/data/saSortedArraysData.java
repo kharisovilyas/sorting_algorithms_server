@@ -16,7 +16,6 @@ public class saSortedArraysData implements IDataEntity {
 
     @Id
     @Column(name = "sorted_array_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sortedArrayId;
 
     @Column(name = "sorted_array_name")
