@@ -55,7 +55,6 @@ public class saLoadArrayService {
     private void startSortedAndSaveArray(dtoArray arrayDTO, Long saArrayId) {
         saSortedArraysData saSortedArraysData = new saSortedArraysData();
         TreeSort<Double> treeSort = new TreeSort<>();
-
         saSortedArraysData.setSortedArrayId(saArrayId);
         saSortedArraysData.setSortedArrayName(arrayDTO.getArrayName());
         LocalDateTime startSorting = LocalDateTime.now();
