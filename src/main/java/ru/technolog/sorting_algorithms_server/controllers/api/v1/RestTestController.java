@@ -27,18 +27,18 @@ public class RestTestController {
     // Обработка HTTP GET запроса для запуска тестов на 100 массивов
     @GetMapping("test1")
     private ResponseEntity<dtoTestMessage> testFor100arrays() {
-        return saTestService.testFor1000Array();
+        return saTestService.testFor100Array();
     }
 
     @GetMapping("test2")
     private ResponseEntity<dtoTestMessage> testFor1000arrays() {
-        return saTestService.testFor10000Array();
+        return saTestService.testFor1000Array();
     }
 
 
     @GetMapping("test3")
     private ResponseEntity<dtoTestMessage> testFor10000arrays() {
-        return saTestService.testFor100Array();
+        return saTestService.testFor10000Array();
     }
 
 }
