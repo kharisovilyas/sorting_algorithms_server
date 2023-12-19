@@ -38,7 +38,7 @@ public class RestTestController {
 
     @GetMapping("test3")
     private ResponseEntity<dtoTestMessage> testFor10000arrays() {
-        return saTestService.testFor100Array();
+        return saTestService.testFor10000Array();
     }
 
 }
