@@ -3,11 +3,16 @@ package ru.technolog.sorting_algorithms_server.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import ru.technolog.sorting_algorithms_server.calcs.sorting.TreeSort;
+import ru.technolog.sorting_algorithms_server.entitys.data.saArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.data.saSortedArraysData;
 import ru.technolog.sorting_algorithms_server.entitys.dto.dtoSortedArray;
+import ru.technolog.sorting_algorithms_server.repository.saArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.repository.saSortedArrayDataRepository;
 import ru.technolog.sorting_algorithms_server.response.ApiResponse;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
@@ -18,6 +23,10 @@ public class saSortedArrayService {
     // Автоматическое внедрение зависимости репозитория для работы с отсортированными массивами
     @Autowired
     private saSortedArrayDataRepository sortedArrayDataRepository;
+
+    @Autowired
+    private saArrayDataRepository arrayDataRepository;
+
     // Метод для удаления отсортированного массива по его идентификатору
     public ResponseEntity<ApiResponse> deleteArray(Long sortedArrayId) {
         // Пытаемся найти отсортированный массив по его идентификатору
@@ -54,5 +63,38 @@ public class saSortedArrayService {
         sortedArraysDTO.setDateOfSorted(saSortedArraysData.getDateOfSorted());
         sortedArraysDTO.setTimeOfImpl(saSortedArraysData.getTimeOfImpl());
         return sortedArraysDTO;
+    }
+
+    public ResponseEntity<ApiResponse> startSoringById(Long arrayId) {
+        Optional<saArraysData> saArraysDataOptional = arrayDataRepository.findById(arrayId);
+        if (saArraysDataOptional.isPresent()) {
+            saArraysData saArraysData = saArraysDataOptional.get();
+            saSortedArraysData saSortedArraysData = new saSortedArraysData();
+            TreeSort<Double> treeSort = new TreeSort<>();
+            saSortedArraysData.setSortedArrayId(saArraysData.getArrayId());
+            saSortedArraysData.setSortedArrayName(saArraysData.getArrayName());
+            LocalDateTime startSorting = LocalDateTime.now();
+            saSortedArraysData.setDateOfSorted(LocalDateTime.now());
+            saSortedArraysData.setArrayData(treeSort.sort(saArraysData.getArrayData()));
+            LocalDateTime endSorting = LocalDateTime.now();
+            Duration sortingDuration = Duration.between(startSorting, endSorting);
+            saSortedArraysData.setTimeOfImpl(sortingDuration);
+            saSortedArraysData.setStatusOfSorted(true);
+            sortedArrayDataRepository.save(saSortedArraysData);
+            return ResponseEntity.ok(new ApiResponse("Сортировка прошла успешно"));
+
+        } else {
+            return ResponseEntity.status(404).body(new ApiResponse("Такого массива не существует!"));
+        }
+    }
+
+    public ResponseEntity<dtoSortedArray> getSortedArrayById(Long arrayId) {
+        Optional<saSortedArraysData> saSortedArraysDataOptional = sortedArrayDataRepository.findById(arrayId);
+        if (saSortedArraysDataOptional.isPresent()) {
+            saSortedArraysData saSortedArraysData = saSortedArraysDataOptional.get();
+            return ResponseEntity.ok(mapToSortedArraysDTO(saSortedArraysData));
+        }else{
+            return ResponseEntity.status(404).body(null);
+        }
     }
 }

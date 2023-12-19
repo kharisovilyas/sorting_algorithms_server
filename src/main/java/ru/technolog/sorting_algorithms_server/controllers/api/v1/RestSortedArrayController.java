@@ -20,8 +20,18 @@ public class RestSortedArrayController {
 
     // Обработка HTTP POST запроса для удаления отсортированного массива по индексу
     @PostMapping("/add")
-    private ResponseEntity<ApiResponse> deleteArrayByIndex(@RequestParam Long sortedArrayId) {
+    private ResponseEntity<ApiResponse> deleteArrayById(@RequestParam Long sortedArrayId) {
         return saSortedArrayService.deleteArray(sortedArrayId);
+    }
+
+    @PostMapping("/start/sorting")
+    private ResponseEntity<ApiResponse> startSortingById(@RequestParam Long arrayId){
+        return saSortedArrayService.startSoringById(arrayId);
+    }
+
+    @PostMapping("/get/once")
+    private ResponseEntity<dtoSortedArray> getSortingArrayById(@RequestParam Long arrayId){
+        return saSortedArrayService.getSortedArrayById(arrayId);
     }
 
     // Обработка HTTP GET запроса для получения всех данных о отсортированных массивах

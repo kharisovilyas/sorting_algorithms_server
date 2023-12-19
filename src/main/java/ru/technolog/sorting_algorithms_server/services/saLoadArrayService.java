@@ -128,5 +128,9 @@ public class saLoadArrayService {
             return ResponseEntity.status(404).body(new ApiResponse("По этому индексу данных нет"));
         }
     }
+
+    public ResponseEntity<ApiResponse> updateArrayWithoutSorted(Long sortedArrayId, dtoArray array) {
+        return null;
+    }
 }
 

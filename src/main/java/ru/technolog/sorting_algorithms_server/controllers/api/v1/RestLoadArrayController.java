@@ -32,8 +32,18 @@ public class RestLoadArrayController {
     }
 
     @PostMapping("/update")
-    private ResponseEntity<ApiResponse> updateArrayWithSorted(@RequestParam Long sortedArrayId,@RequestBody dtoArray array) {
+    private ResponseEntity<ApiResponse> updateArrayWithSorting(@RequestParam Long sortedArrayId, @RequestBody dtoArray array) {
         return saLoadArrayService.updateArrayWithSorted(sortedArrayId,array);
+    }
+
+    @PostMapping("/update/without")
+    private ResponseEntity<ApiResponse> updateArrayWithoutSorting(@RequestParam Long sortedArrayId,@RequestBody dtoArray array) {
+        return saLoadArrayService.updateArrayWithoutSorted(sortedArrayId, array);
+    }
+
+    @PostMapping("/add/without")
+    private ResponseEntity<ApiResponse> addArrayWithoutSorting(@RequestBody dtoArray array) {
+        return saLoadArrayService.addArrayWithSorting(array);
     }
 
     // Обработка HTTP GET запроса для получения всех данных о массивах
