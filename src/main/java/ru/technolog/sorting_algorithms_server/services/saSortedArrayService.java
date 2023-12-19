@@ -81,6 +81,8 @@ public class saSortedArrayService {
             saSortedArraysData.setTimeOfImpl(sortingDuration);
             saSortedArraysData.setStatusOfSorted(true);
             sortedArrayDataRepository.save(saSortedArraysData);
+            saArraysData.setStatusOfSorted(true);
+            arrayDataRepository.save(saArraysData);
             return ResponseEntity.ok(new ApiResponse("Сортировка прошла успешно"));
 
         } else {

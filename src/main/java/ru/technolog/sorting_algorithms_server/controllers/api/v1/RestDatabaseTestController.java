@@ -18,7 +18,6 @@ public class RestDatabaseTestController {
 
     @GetMapping("/add-100-arrays")
     public ResponseEntity<dtoTestMessage> add100ArraysToDatabase() {
-        System.out.println("работает тест");
         return databaseTestService.addArraysToDatabase("Тест добавления 100 массивов",100);
     }
 

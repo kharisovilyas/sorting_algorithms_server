@@ -27,8 +27,8 @@ public class RestLoadArrayController {
 
     // Обработка HTTP POST запроса для удаления массива по индексу
     @PostMapping("/delete")
-    private ResponseEntity<ApiResponse> deleteArrayByIndex(@RequestParam Long sortedArrayId) {
-        return saLoadArrayService.deleteArray(sortedArrayId);
+    private ResponseEntity<ApiResponse> deleteArrayByIndex(@RequestParam Long arrayId) {
+        return saLoadArrayService.deleteArray(arrayId);
     }
 
     @PostMapping("/update")
