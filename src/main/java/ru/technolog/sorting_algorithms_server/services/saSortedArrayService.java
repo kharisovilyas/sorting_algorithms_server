@@ -47,8 +47,8 @@ public class saSortedArrayService {
     // Метод для преобразования объекта saSortedArraysData в объект dtoSortedArray
     public dtoSortedArray mapToSortedArraysDTO(saSortedArraysData saSortedArraysData) {
         dtoSortedArray sortedArraysDTO = new dtoSortedArray();
-        sortedArraysDTO.setArray_data(saSortedArraysData.getArrayData());
-        sortedArraysDTO.setSortedArrayId(saSortedArraysData.getId());
+        sortedArraysDTO.setArrayData(saSortedArraysData.getArrayData());
+        sortedArraysDTO.setSortedArrayId(saSortedArraysData.getSortedArrayId());
         sortedArraysDTO.setStatusOfSorted(saSortedArraysData.isStatusOfSorted());
         sortedArraysDTO.setSortedArrayName(saSortedArraysData.getSortedArrayName());
         sortedArraysDTO.setDateOfSorted(saSortedArraysData.getDateOfSorted());
