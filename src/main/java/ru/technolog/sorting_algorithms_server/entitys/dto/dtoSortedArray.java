@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class dtoSortedArray {
+public class dtoSortedArray implements IDTOEntity {
     private Long sortedArrayId;
     private String sortedArrayName;
     private LocalDateTime dateOfSorted;
