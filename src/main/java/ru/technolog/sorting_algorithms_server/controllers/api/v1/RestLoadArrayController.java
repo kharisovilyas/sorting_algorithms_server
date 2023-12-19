@@ -43,7 +43,7 @@ public class RestLoadArrayController {
 
     @PostMapping("/add/without")
     private ResponseEntity<ApiResponse> addArrayWithoutSorting(@RequestBody dtoArray array) {
-        return saLoadArrayService.addArrayWithSorting(array);
+        return saLoadArrayService.addArrayWithoutSorting(array);
     }
 
     // Обработка HTTP GET запроса для получения всех данных о массивах
