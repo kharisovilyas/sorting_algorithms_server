@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+// надеюсь ты будешь работать и что-то мне дашь
 @Entity
 @Table(name = "sa_arrays")
 /*Класс для создания массива как Entity*/
